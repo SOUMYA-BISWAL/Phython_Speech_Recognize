@@ -1,0 +1,20 @@
+echo "# Phython_Speech_Recognize" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/SOUMYA-BISWAL/Phython_Speech_Recognize.git
+git push -u origin master
+
+
+# import Library
+import speech_recognition as sr
+
+# Variable to call Recognize function
+r = sr.Recognizer()
+
+with sr.Microphone() as source:
+    print ("what you want to Print: ")
+    audio = r.listen(source)
+
+# Print What you are Saying
+print ("You are Saying: " + r.recognize_google(audio))
