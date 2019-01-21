@@ -1,0 +1,6 @@
+
+//calculater
+sentence = 10 + 23 + 78 + 46 + 34
+sentence = sentence.replace(' ', '')# Optional code
+Sum = sum(numbers) 
+print(Sum) 
