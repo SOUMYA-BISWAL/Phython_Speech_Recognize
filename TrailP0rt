@@ -4,3 +4,28 @@ sentence = 10 + 23 + 78 + 46 + 34
 sentence = sentence.replace(' ', '')# Optional code
 Sum = sum(numbers) 
 print(Sum) 
+
+//create new window and add two button
+import tkinter as tk
+root=tk.Tk()
+frame=tk.Frame(root)
+frame.pack()
+root.title("JARVIS")
+root.iconbitmap('C:/micro.png')
+root.geometry("235x200")
+root.config(background='blue')
+background_image = tk.PhotoImage(file="C:/mid.gif")
+background = tk.Label(root, image=background_image, bd=0)
+background.pack()
+textArea = tk.Text(root, height=5, width=29)
+textArea.insert(root)
+textArea.pack()
+recordBootton = tk.Button(frame,command=quit)
+photo1=tk.PhotoImage(file="C:/micro.png")
+recordBootton.config(image=photo1,width="60",height="60")
+recordBootton.pack(side=tk.LEFT)
+exitButton = tk.Button(frame,command=quit)
+photo2=tk.PhotoImage(file="C:/quit.png")
+exitButton.config(image=photo2,width="60",height="60")
+exitButton.pack(side=tk.RIGHT)
+root.mainloop()
