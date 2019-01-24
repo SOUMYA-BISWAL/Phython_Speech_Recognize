@@ -47,81 +47,89 @@ def static_speech(text):
     engine.runAndWait()
 
 def call_jarvis():
-    playsound('hellojarvis.mp3')
-    voice_note = read_voice_cmd().lower()
-    print 'cmd: {}', voice_note
+    while True:
+        playsound('hellojarvis.mp3')
+        voice_note = read_voice_cmd().lower()
+        print 'cmd: {}', voice_note
 
-    if voice_note == 'hi' or voice_note == 'hello' or voice_note == 'hi jarvis' or voice_note == 'hello jarvis':
-        print 'In Greeting......'
-        play_sound(mp3_greeting_list)
+        if voice_note == 'hi' or voice_note == 'hello' or voice_note == 'hi jarvis' or voice_note == 'hello jarvis':
+            print 'In Greeting......'
+            play_sound(mp3_greeting_list)
 
-    elif voice_note == 'open facebook' or voice_note == 'lunch facebook':
-        play_sound(mp3_open_launch_list)
-        print 'In Open.......'
-        webbrowser.open("http://www.facebook.com")
+        elif voice_note == 'open facebook' or voice_note == 'lunch facebook':
+            play_sound(mp3_open_launch_list)
+            print 'In Open.......'
+            webbrowser.open("http://www.facebook.com")
 
-    elif voice_note == 'open youtube' or voice_note == 'lunch facebook':
-        print 'In Open.......'
-        play_sound(mp3_open_launch_list)
-        webbrowser.open("http://www.Youtube.com")
+        elif voice_note == 'open youtube' or voice_note == 'lunch facebook':
+            print 'In Open.......'
+            play_sound(mp3_open_launch_list)
+            webbrowser.open("http://www.Youtube.com")
 
-    elif voice_note == 'open twitter' or voice_note == 'lunch twitter':
-        print 'In Open.......'
-        play_sound(mp3_open_launch_list)
-        webbrowser.open("http://www.twitter.com")
+        elif voice_note == 'open twitter' or voice_note == 'lunch twitter':
+            print 'In Open.......'
+            play_sound(mp3_open_launch_list)
+            webbrowser.open("http://www.twitter.com")
 
-    elif voice_note == 'open gmail' or voice_note == 'lunch gmail':
-        print 'In Open.......'
-        play_sound(mp3_open_launch_list)
-        webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
+        elif voice_note == 'open gmail' or voice_note == 'lunch gmail':
+            print 'In Open.......'
+            play_sound(mp3_open_launch_list)
+            webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
 
-    elif voice_note == 'how are you' or voice_note == 'how are you jarvis':
-        print 'i am fine.......'
-        play_sound(mp3_howareyou_list)
+        elif voice_note == 'how are you' or voice_note == 'how are you jarvis':
+            print 'i am fine.......'
+            play_sound(mp3_howareyou_list)
 
-    elif voice_note == 'what are you doing' or voice_note == 'what are you doing jarvis':
-        print 'waiting for you.......'
-        play_sound(mp3_whatareyoudoing_list)
+        elif voice_note == 'what are you doing' or voice_note == 'what are you doing jarvis':
+            print 'waiting for you.......'
+            play_sound(mp3_whatareyoudoing_list)
 
-    elif voice_note == 'open c drive' or voice_note == 'open see drive' or voice_note == 'open my computer' or voice_note == 'lunch my computer' or voice_note == 'open my c drive':
-        print 'In Open.......'
-        play_sound(mp3_open_launch_list)
-        os_note = voice_note.replace('open ', '')
-        os.system('explorer c:\\"{}"'.format(os_note))
+        elif 'drive' in voice_note:
+            print 'In Open.......'
+            play_sound(mp3_open_launch_list)
+            drive= voice_note[5]
+            os.system('explorer '+drive+':\\'.format(''))
+            while True:
+                if 'open' in voice_note :
+                    print 'In Open.......'
+                    play_sound(mp3_open_launch_list)
+                    os_note = voice_note.replace('open ', '')
+                    os.system('explorer c:\\"{}"'.format(os_note))
+                
 
-    elif voice_note == 'tell me a joke' or voice_note == 'tell a joke' or voice_note == 'tell me one joke' or voice_note == 'tell one joke':
-        print 'ok listen.......'
-        play_sound(joke_list)
-        time.sleep(3)
+        elif voice_note == 'tell me a joke' or voice_note == 'tell a joke' or voice_note == 'tell me one joke' or voice_note == 'tell one joke':
+            print 'ok listen.......'
+            play_sound(joke_list)
+            time.sleep(3)
 
-    elif voice_note == 'please remind' or voice_note == 'remind':
-        static_speech('what should i remind?')
-        print 'ok.......'
-        with sr.Microphone() as source:
-            speech.adjust_for_ambient_noise(source)
-            print 'say'
-            audio = speech.listen(source=source, timeout=10, phrase_time_limit=3)
-            global remind_speech
-            remind_speech = speech.recognize_google(audio)
-            static_speech(static_remind_speech+remind_speech)
+        elif voice_note == 'please remind' or voice_note == 'remind':
+            static_speech('what should i remind?')
+            print 'ok.......'
+            with sr.Microphone() as source:
+                speech.adjust_for_ambient_noise(source)
+                print 'say'
+                audio = speech.listen(source=source, timeout=10, phrase_time_limit=3)
+                global remind_speech
+                remind_speech = speech.recognize_google(audio)
+                static_speech(static_remind_speech+remind_speech)
 
-    elif voice_note == 'show me reminder' or voice_note == 'say me my reminder' or voice_note == 'say me reminder' or voice_note == 'show me my reminder':
-        print 'ok this is your reminder .......'
-        if remind_speech == '':
-            static_speech('you do not have any reminder for today')
+        elif voice_note == 'show me reminder' or voice_note == 'say me my reminder' or voice_note == 'say me reminder' or voice_note == 'show me my reminder':
+            print 'ok this is your reminder .......'
+            if remind_speech == '':
+                static_speech('you do not have any reminder for today')
+            else:
+                static_speech('you have one reminder' + remind_speech)
+
+        elif voice_note == 'thanks' or voice_note == 'thank you' or voice_note == 'thanks jarvis':
+            play_sound(mp3_thanks_list)
+            print 'Thanks boss'
+            pass
+            #sys.exit()
+
         else:
-            static_speech('you have one reminder' + remind_speech)
-
-    elif voice_note == 'thanks' or voice_note == 'thank you' or voice_note == 'thanks jarvis':
-        play_sound(mp3_thanks_list)
-        print 'Thanks boss'
-        sys.exit()
-
-    else:
-       # playsound('internet.mp3')
-        webbrowser.open(voice_note)
-
-    pass
+           # playsound('internet.mp3')
+            webbrowser.open(voice_note)
+            
 
 def jarvis_frontend():
     root=tk.Tk()
@@ -148,6 +156,5 @@ def jarvis_frontend():
     root.mainloop()
 
 if __name__ == '__main__':
-    while True:
         jarvis_frontend()
 
