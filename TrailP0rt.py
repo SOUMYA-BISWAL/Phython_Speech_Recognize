@@ -82,3 +82,25 @@ elif('what is my location') in response or ('where am I') in response or ('where
 import time
 tim = time.strftime("%d:%B:%Y:%A")
 print(tim)
+
+
+//ss and calculate
+//def SS():
+        engine.say("Taking screenshot")
+        engine.runAndWait()
+        name=random.randint(1000,300000)
+        time.sleep(5)
+        ImageGrab.grab().save("screenshot"+str(name),"JPEG")
+        engine.say("Screenshot saved at "+name)
+        engine.runAndWait()
+        print("Screenshot saved at"+name)
+        main()
+        
+def calculate(data):
+        if 'plus' in data:
+                str.replace("plus","+")
+        
+        value1,value2= (data.split('calculate',1)[1])
+        answer=value1+value2
+        engine.say("The answer to that is "+answer)
+        engine.runAndWait(
