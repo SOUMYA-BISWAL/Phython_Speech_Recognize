@@ -151,3 +151,27 @@ if __name__ == '__main__':
     while True:
         jarvis_frontend()
 
+        
+        
+        
+        
+        
+        
+//browse
+
+elif ('google search') in response :
+        query = response
+        stopwords = ['google', 'search']
+        querywords = query.split()
+        resultwords  = [word for word in querywords if word.lower() not in stopwords]
+        result = ' '.join(resultwords)
+        Chrome = ("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s")
+        webbrowser.get(Chrome).open('https://www.google.com/search?sourceid=chrome&ie=utf-8&oe=utf-8&aq=t&hl=&q='+result)
+    elif ('google maps') in response:
+        query = response
+        stopwords = ['google', 'maps']
+        querywords = query.split()
+        resultwords  = [word for word in querywords if word.lower() not in stopwords]
+        result = ' '.join(resultwords)
+        Chrome = ("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s")
+        webbrowser.get(Chrome).open("https://www.google.be/maps/place/"+result+"/")
