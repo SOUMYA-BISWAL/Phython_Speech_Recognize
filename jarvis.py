@@ -8,7 +8,10 @@ import time
 import pyttsx
 import tkinter as tk
 
+#speech contain like audio
 speech = sr.Recognizer()
+
+#all variable declaration
 mp3_greeting_list = ['hiboss.mp3', 'helloboss.mp3']
 mp3_open_launch_list = ['yesboss.mp3', 'sureboss.mp3']
 mp3_howareyou_list = ['how_are_you.mp3', 'how_are_you1.mp3', 'how_are_you4.mp3']
@@ -18,10 +21,12 @@ mp3_whatareyoudoing_list = ['what_are_you_doing.mp3', 'what_are_you_doing2.mp3']
 static_remind_speech = 'alright, i will remind '
 remind_speech=''
 
+#Play all mp3 Variable
 def play_sound(mp3_list):
     mp3 = random.choice(mp3_list)
     playsound(mp3)
 
+#Audio Speech to text convert    
 def read_voice_cmd():
     voice_text = ''
     print 'Listing...'
@@ -39,6 +44,7 @@ def read_voice_cmd():
         pass
     return voice_text
 
+#Text to audio Speech
 def static_speech(text):
     engine = pyttsx.init()
     voices = engine.getProperty('voices')
@@ -46,44 +52,59 @@ def static_speech(text):
     engine.say(text)
     engine.runAndWait()
 
+
+#Function contatin All Logic    
 def call_jarvis():
     while True:
         playsound('hellojarvis.mp3')
         voice_note = read_voice_cmd().lower()
         print 'cmd: {}', voice_note
 
-        if voice_note == 'hi' or voice_note == 'hello' or voice_note == 'hi jarvis' or voice_note == 'hello jarvis':
+        #Hi/Hello logic
+        if 'hi' in voice_note or 'hello' in voice_note:
             print 'In Greeting......'
             play_sound(mp3_greeting_list)
 
-        elif voice_note == 'open facebook' or voice_note == 'lunch facebook':
+        #Facebook open   
+        elif 'open facebook' in voice_note:
             play_sound(mp3_open_launch_list)
             print 'In Open.......'
             webbrowser.open("http://www.facebook.com")
 
-        elif voice_note == 'open youtube' or voice_note == 'lunch facebook':
+        #Youtube open    
+        elif 'open youtube' in voice_note:
             print 'In Open.......'
             play_sound(mp3_open_launch_list)
             webbrowser.open("http://www.Youtube.com")
 
-        elif voice_note == 'open twitter' or voice_note == 'lunch twitter':
+        #Open Twitter    
+        elif 'open twitter' in voice_note ':
             print 'In Open.......'
             play_sound(mp3_open_launch_list)
             webbrowser.open("http://www.twitter.com")
 
-        elif voice_note == 'open gmail' or voice_note == 'lunch gmail':
+        #Open Gmail    
+        elif 'open gmail' in voice_note :
             print 'In Open.......'
             play_sound(mp3_open_launch_list)
             webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
-
+           
+        #Ask Marray
+        elif 'marry' in voice_note or 'will you marry' in voice_note :
+            print 'NO......'
+            static_speech('I am sorry.. The person you are trying to contact is currently unavailable, please try again later or join the queue for your turn')
+        
+        #How are you Jarvis
         elif voice_note == 'how are you' or voice_note == 'how are you jarvis':
             print 'i am fine.......'
             play_sound(mp3_howareyou_list)
 
+        #What are you Doing    
         elif voice_note == 'what are you doing' or voice_note == 'what are you doing jarvis':
             print 'waiting for you.......'
             play_sound(mp3_whatareyoudoing_list)
 
+        #Open Drives    
         elif 'drive' in voice_note:
             print 'In Open.......'
             play_sound(mp3_open_launch_list)
@@ -95,12 +116,20 @@ def call_jarvis():
                 os_note = voice_note.replace('open ', '')
                 os.system('explorer '+drive+':\\'+os_note.format(''))   
 
-        elif voice_note == 'tell me a joke' or voice_note == 'tell a joke' or voice_note == 'tell me one joke' or voice_note == 'tell one joke':
+        #For Joke        
+        elif 'joke' in voice_note:
             print 'ok listen.......'
             play_sound(joke_list)
             time.sleep(3)
-
-        elif voice_note == 'please remind' or voice_note == 'remind':
+            
+        #Asking about Time    
+        elif 'time' in voice_note:
+            current_Time = time.strftime("%d:%B:%Y:%A")
+            print current_Time
+            static_speech(current_Time)
+            
+        #Remind command    
+        elif 'remind' in voice_note :
             static_speech('what should i remind?')
             print 'ok.......'
             with sr.Microphone() as source:
@@ -111,17 +140,20 @@ def call_jarvis():
                 remind_speech = speech.recognize_google(audio)
                 static_speech(static_remind_speech+remind_speech)
 
-        elif voice_note == 'show me reminder' or voice_note == 'say me my reminder' or voice_note == 'say me reminder' or voice_note == 'show me my reminder':
+        #Ask Reminder        
+        elif 'reminder' in voice_note :
             print 'ok this is your reminder .......'
             if remind_speech == '':
                 static_speech('you do not have any reminder for today')
             else:
                 static_speech('you have one reminder' + remind_speech)
 
-        elif voice_note == 'thanks' or voice_note == 'thank you' or voice_note == 'thanks jarvis':
+        #Thanks        
+        elif 'thanks' in voice_note or 'thank you' in voice_note' :
             play_sound(mp3_thanks_list)
             print 'Thanks boss'
-            pass
+            jarvis_frontend()
+            #pass
             #sys.exit()
 
         else:
@@ -129,6 +161,7 @@ def call_jarvis():
             webbrowser.open(voice_note)
             
 
+#Fronted part logic            
 def jarvis_frontend():
     root=tk.Tk()
     frame=tk.Frame(root)
@@ -137,12 +170,12 @@ def jarvis_frontend():
     root.iconbitmap('C:/micro.png')
     root.geometry("235x200")
     root.config(background='blue')
-    background_image = tk.PhotoImage(file="C:/mid.gif")
-    background = tk.Label(root, image=background_image, bd=0)
-    background.pack()
-    textArea = tk.Text(root, height=5, width=29)
-    textArea.insert(root)
-    textArea.pack()
+    #background_image = tk.PhotoImage(file="C:/mid.gif")
+    #background = tk.Label(root, image=background_image, bd=0)
+    #background.pack()
+    #textArea = tk.Text(root, height=5, width=29)
+    #textArea.insert(root)
+    #textArea.pack()
     recordBootton = tk.Button(frame,command=call_jarvis())
     photo1=tk.PhotoImage(file="C:/micro.png")
     recordBootton.config(image=photo1,width="60",height="60")
@@ -153,6 +186,7 @@ def jarvis_frontend():
     exitButton.pack(side=tk.RIGHT)
     root.mainloop()
 
+#Main Method    
 if __name__ == '__main__':
         jarvis_frontend()
 
