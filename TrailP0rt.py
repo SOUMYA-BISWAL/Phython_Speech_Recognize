@@ -46,3 +46,16 @@ elif('will you marry me') in response:
                 mail=1
                 email='https://outlook.live.com'
                 webbrowser.open(email)
+
+//time and qs
+    elif response == ("what is your favorite color"):
+        print("purple")
+    elif response == ("who are you"):
+        print ("jarvia")
+    elif response == "what are you":
+        print ("an AI")
+    elif response == ("cool"):
+        print ("mhm")
+    elif ('what can you do') in response:
+        rand = ('I can do Tasks as Playing Music, Videos, Opening any file, websites,Google Search,Movie Search, Put Computer to sleep, Arithmatic Operations, Normal Conversations, Jokes and many more')
+    
