@@ -6,6 +6,7 @@ import random
 import sys
 import time
 import pyttsx
+import tkinter as tk
 
 speech = sr.Recognizer()
 mp3_greeting_list = ['hiboss.mp3', 'helloboss.mp3']
@@ -46,6 +47,7 @@ def static_speech(text):
     engine.runAndWait()
 
 def call_jarvis():
+    playsound('hellojarvis.mp3')
     voice_note = read_voice_cmd().lower()
     print 'cmd: {}', voice_note
 
@@ -121,21 +123,31 @@ def call_jarvis():
 
     pass
 
+def jarvis_frontend():
+    root=tk.Tk()
+    frame=tk.Frame(root)
+    frame.pack()
+    root.title("JARVIS")
+    root.iconbitmap('C:/micro.png')
+    root.geometry("235x200")
+    root.config(background='blue')
+    background_image = tk.PhotoImage(file="C:/mid.gif")
+    background = tk.Label(root, image=background_image, bd=0)
+    background.pack()
+    textArea = tk.Text(root, height=5, width=29)
+    textArea.insert(root)
+    textArea.pack()
+    recordBootton = tk.Button(frame,command=call_jarvis())
+    photo1=tk.PhotoImage(file="C:/micro.png")
+    recordBootton.config(image=photo1,width="60",height="60")
+    recordBootton.pack(side=tk.LEFT)
+    exitButton = tk.Button(frame,command=quit)
+    photo2=tk.PhotoImage(file="C:/quit.png")
+    exitButton.config(image=photo2,width="60",height="60")
+    exitButton.pack(side=tk.RIGHT)
+    root.mainloop()
+
 if __name__ == '__main__':
-    playsound('hellojarvis.mp3')
-    time.sleep(2)
     while True:
-        call_jarvis()
-
-
-'''
-    while True:
-        voice_note_direct = read_voice_cmd().lower()
-        print 'inside main'
-        print 'cmd: {}', voice_note_direct
-        if voice_note_direct == 'ok jarvis' or voice_note_direct == 'ok':
-            static_speech('what can i do for you')
-            call_jarvis()
-        else:
-            static_speech('sorry, i can not do anything for you')'''
+        jarvis_frontend()
 
