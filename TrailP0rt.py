@@ -104,3 +104,10 @@ def calculate(data):
         answer=value1+value2
         engine.say("The answer to that is "+answer)
         engine.runAndWait(
+                
+                
+                
+   if "show me your code" in data:
+    speak("Hold on Rafael I will open my code for you")
+    url = ("https://github.com/SavageCoder77/Marvin-Jarvis-")
+    webbrowser.open(url,new=new)
