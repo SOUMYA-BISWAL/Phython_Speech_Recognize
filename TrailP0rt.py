@@ -74,3 +74,11 @@ elif('what is my location') in response or ('where am I') in response or ('where
         loc_lat = (float(json_object['coord']['lat']))
         rand2 = str(loc_lat)
         print("The current position is "+rand1+" longitude and "+rand2+" latitude")
+        
+        
+        
+   //time
+
+import time
+tim = time.strftime("%d:%B:%Y:%A")
+print(tim)
