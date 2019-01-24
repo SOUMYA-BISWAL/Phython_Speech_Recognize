@@ -59,3 +59,18 @@ elif('will you marry me') in response:
     elif ('what can you do') in response:
         rand = ('I can do Tasks as Playing Music, Videos, Opening any file, websites,Google Search,Movie Search, Put Computer to sleep, Arithmatic Operations, Normal Conversations, Jokes and many more')
     
+
+
+
+
+
+///new
+
+elif('what is my location') in response or ('where am I') in response or ('where are you') in response :
+        w = requests.get('http://api.openweathermap.org/data/2.5/weather?id=1275004&appid=5fc29900336d19d1d912723dc3d1e117')
+        json_object = w.json()
+        loc_lon = (float(json_object['coord']['lon']))
+        rand1 = str(loc_lon)
+        loc_lat = (float(json_object['coord']['lat']))
+        rand2 = str(loc_lat)
+        print("The current position is "+rand1+" longitude and "+rand2+" latitude")
