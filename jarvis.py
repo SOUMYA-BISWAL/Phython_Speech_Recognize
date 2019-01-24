@@ -89,13 +89,11 @@ def call_jarvis():
             play_sound(mp3_open_launch_list)
             drive= voice_note[5]
             os.system('explorer '+drive+':\\'.format(''))
-            while True:
-                if 'open' in voice_note :
-                    print 'In Open.......'
-                    play_sound(mp3_open_launch_list)
-                    os_note = voice_note.replace('open ', '')
-                    os.system('explorer '+drive+':\\"{}"'.format(os_note))
-                
+            if 'open' in voice_note :
+                print 'In Open.......'
+                play_sound(mp3_open_launch_list)
+                os_note = voice_note.replace('open ', '')
+                os.system('explorer '+drive+':\\'+os_note.format(''))   
 
         elif voice_note == 'tell me a joke' or voice_note == 'tell a joke' or voice_note == 'tell me one joke' or voice_note == 'tell one joke':
             print 'ok listen.......'
