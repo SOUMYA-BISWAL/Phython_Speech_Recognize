@@ -1,4 +1,37 @@
 
+ //brightness  
+import wmi
+
+brightness = 40 # percentage [0-100]
+c = wmi.WMI(namespace='wmi')
+
+methods = c.WmiMonitorBrightnessMethods()[0]
+methods.WmiSetBrightness(brightness, 0)
+/same thing
+wmi.WMI(namespace='wmi').WmiMonitorBrightnessMethods()[0].WmiSetBrightness(brightness, 0)
+
+        
+//bettry
+import psutil
+battery = psutil.sensors_battery()
+plugged = battery.power_plugged
+percent = str(battery.percent)
+if plugged==False: plugged="Not Plugged In"
+else: plugged="Plugged In"
+print(percent+'% | '+plugged)
+
+>>> import psutil
+>>> def secs2hours(secs):
+...     mm, ss = divmod(secs, 60)
+...     hh, mm = divmod(mm, 60)
+...     return "%d:%02d:%02d" % (hh, mm, ss)
+>>> battery = psutil.sensors_battery()
+>>> battery
+sbattery(percent=93, secsleft=16628, power_plugged=False)
+>>> print("charge = %s%%, time left = %s" % (battery.percent, secs2hours(battery.secsleft)))
+charge = 93%, time left = 4:37:08
+        
+        
         
         
         
