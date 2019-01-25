@@ -1,3 +1,4 @@
+#All Library Import
 import speech_recognition as sr
 import os
 from playsound import playsound
@@ -7,6 +8,7 @@ import sys
 import time
 import pyttsx
 import tkinter as tk
+import ImageGrab
 
 #speech contain like audio
 speech = sr.Recognizer()
@@ -88,6 +90,14 @@ def call_jarvis():
             print 'In Open.......'
             play_sound(mp3_open_launch_list)
             webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
+            
+        elif 'screenshot' in voice_note :
+            print 'Taking Screenshot.......'
+            name=random.randint(1000,300000)
+            time.sleep(2)
+            ImageGrab.grab().save("screenshot"+str(name),"JPEG")
+            static_speech("Screenshot saved at "+name)
+        
            
         #Ask Marray
         elif 'marry' in voice_note or 'will you marry' in voice_note :
