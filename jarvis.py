@@ -1,4 +1,4 @@
-#All Library Import
+# WELCOME TO ========================================================================================================== JARVIS 
 import speech_recognition as sr
 import os
 from playsound import playsound
@@ -9,6 +9,17 @@ import time
 import pyttsx
 import tkinter as tk
 import ImageGrab
+
+
+INFO = '''
+        *=======================================*
+        |....JARVISE ARTIFICIAL INTELLIGENCE....|
+        +---------------------------------------+
+        |#Author: Soumya Ranjan Biswal          |
+        |#Date: 01/06/2018                      |
+        *=======================================*
+        '''
+print(INFO)
 
 #speech contain like audio
 speech = sr.Recognizer()
@@ -23,12 +34,12 @@ mp3_whatareyoudoing_list = ['what_are_you_doing.mp3', 'what_are_you_doing2.mp3']
 static_remind_speech = 'alright, i will remind '
 remind_speech=''
 
-#Play all mp3 Variable
+#JARVIS'S TALK  ========================================================================================================== SENSITIVE BRAIN 
 def play_sound(mp3_list):
     mp3 = random.choice(mp3_list)
     playsound(mp3)
 
-#Audio Speech to text convert    
+# JARVIS'S EARS========================================================================================================== SENSITIVE BRAIN 
 def read_voice_cmd():
     voice_text = ''
     print 'Listing...'
@@ -55,7 +66,7 @@ def static_speech(text):
     engine.runAndWait()
 
 
-#Function contatin All Logic    
+# POLITE JARVIS ============================================================================================================= BRAIN 1   
 def call_jarvis():
     while True:
         playsound('hellojarvis.mp3')
@@ -197,7 +208,7 @@ def call_jarvis():
             webbrowser.open(voice_note)
             
 
-#Fronted part logic            
+# JARVIS FRONTEND ========================================================================================================== SENSITIVE BRAIN             
 def jarvis_frontend():
     root=tk.Tk()
     frame=tk.Frame(root)
@@ -222,7 +233,9 @@ def jarvis_frontend():
     exitButton.pack(side=tk.RIGHT)
     root.mainloop()
 
-#Main Method    
+	
+	
+# MAIN METHOD========================================================================================================== BRAIN     
 if __name__ == '__main__':
         jarvis_frontend()
 
