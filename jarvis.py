@@ -100,9 +100,16 @@ def call_jarvis():
             play_sound(mp3_howareyou_list)
 
         #What are you Doing    
-        elif voice_note == 'what are you doing' or voice_note == 'what are you doing jarvis':
+        elif 'doing' in voice_note  or 'doing jarvis' in voice_note:
             print 'waiting for you.......'
             play_sound(mp3_whatareyoudoing_list)
+          
+        #GitHub Code
+        elif 'code' in voice_note or 'your code' in voice_note:
+            print 'Hold on.......'
+            static_speech('Hold on boss I will open my code for you')
+            url = ("https://github.com/SavageCoder77/Marvin-Jarvis-")
+            webbrowser.open(url,new=new)  
 
         #Open Drives    
         elif 'drive' in voice_note:
