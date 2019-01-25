@@ -1,4 +1,4 @@
-
+https://github.com/ValentinGenard/Jarvis-artificial-intelligence/edit/master/Jarvis.py
  //brightness  
 import wmi
 
