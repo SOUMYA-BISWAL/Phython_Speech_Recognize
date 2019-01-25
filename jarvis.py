@@ -108,7 +108,7 @@ def call_jarvis():
         elif 'code' in voice_note or 'your code' in voice_note:
             print 'Hold on.......'
             static_speech('Hold on boss I will open my code for you')
-            url = ("https://github.com/SavageCoder77/Marvin-Jarvis-")
+            url = ("https://github.com/Phython_Speech_Recognize/jarvis.py")
             webbrowser.open(url,new=new)  
 
         #Open Drives    
