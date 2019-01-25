@@ -90,7 +90,8 @@ def call_jarvis():
             print 'In Open.......'
             play_sound(mp3_open_launch_list)
             webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
-            
+        
+        #ScrrenShot
         elif 'screenshot' in voice_note :
             print 'Taking Screenshot.......'
             name=random.randint(1000,300000)
@@ -98,6 +99,17 @@ def call_jarvis():
             ImageGrab.grab().save("screenshot"+str(name),"JPEG")
             static_speech("Screenshot saved at "+name)
         
+        #Follow Repeate with me
+        elif 'Follow me' in voice_note or 'Repeate' in voice_note:
+            print 'Ok Sir......'
+            while True:
+                with sr.Microphone() as source:
+                    speech.adjust_for_ambient_noise(source)
+                    repeate_audio = speech.listen(source=source, timeout=10, phrase_time_limit=3)
+                    if 'stop Repeate' in repeate_audio :
+                        break
+                    else:
+                        static_speech(repeate_audio)
            
         #Ask Marray
         elif 'marry' in voice_note or 'will you marry' in voice_note :
@@ -118,7 +130,7 @@ def call_jarvis():
         elif 'code' in voice_note or 'your code' in voice_note:
             print 'Hold on.......'
             static_speech('Hold on boss I will open my code for you')
-            url = ("https://github.com/Phython_Speech_Recognize/jarvis.py")
+            url = ("https://github.com/SOUMYA-BISWAL/Phython_Speech_Recognize/blob/master/jarvis.py")
             webbrowser.open(url,new=new)  
 
         #Open Drives    
@@ -127,11 +139,18 @@ def call_jarvis():
             play_sound(mp3_open_launch_list)
             drive= voice_note[5]
             os.system('explorer '+drive+':\\'.format(''))
-            if 'open' in voice_note :
-                print 'In Open.......'
-                play_sound(mp3_open_launch_list)
-                os_note = voice_note.replace('open ', '')
-                os.system('explorer '+drive+':\\'+os_note.format(''))   
+            print 'ok done'
+            with sr.Microphone() as source:
+                speech.adjust_for_ambient_noise(source)
+                drive_audio = speech.listen(source=source, timeout=10, phrase_time_limit=3)
+                if 'open' in drive_audio :
+                    print 'In Open.......'
+                    play_sound(mp3_open_launch_list)
+                    os_note = drive_audio.replace('open ', '')
+                    os.system('explorer '+drive+':\\'+os_note.format(''))   
+                else:
+	                break
+                        
 
         #For Joke        
         elif 'joke' in voice_note:
